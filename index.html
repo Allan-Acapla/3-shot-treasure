@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3 Shot Treasure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Great+Vibes&family=Lobster&family=Roboto:wght@400;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              script: ['"Great Vibes"', 'cursive'],
+              vegas: ['"Lobster"', 'cursive'],
+              russo: ['"Russo One"', 'sans-serif'], // New Headline Font
+              sans: ['Roboto', 'sans-serif'],
+              display: ['Montserrat', 'sans-serif'],
+            },
+            colors: {
+              // ... existing color palette ...
+              gold: {
+                100: '#fff9c4',
+                200: '#fff59d',
+                300: '#fdd835',
+                400: '#fbc02d',
+                500: '#f9a825',
+                600: '#f57f17',
+                700: '#ef6c00',
+                800: '#e65100',
+                900: '#bf360c',
+              },
+              royal: {
+                800: '#1e3a8a',
+                900: '#172554',
+                950: '#0f172a',
+              }
+            },
+            animation: {
+              'float': 'float 8s ease-in-out infinite',
+              'float-delayed': 'float 8s ease-in-out 4s infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'shine': 'shine 3s infinite linear',
+              'fade-in': 'fadeIn 0.3s ease-out forwards',
+              'scale-in': 'scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'chest-pop': 'chestPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+              'ray-spin': 'spin 10s linear infinite',
+              // New "Juice" Animations
+              'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+              'bounce-open': 'bounceOpen 0.6s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards', // Heavy recoil
+              'shine-sweep': 'shineSweep 3s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '50%': { transform: 'translate(10px, -15px) rotate(2deg)' },
+              },
+              shine: {
+                '0%': { backgroundPosition: '200% center' },
+                '100%': { backgroundPosition: '-200% center' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              scaleIn: {
+                '0%': { transform: 'scale(0.9)', opacity: '0' },
+                '100%': { transform: 'scale(1)', opacity: '1' },
+              },
+              chestPop: {
+                '0%': { transform: 'scale(1)' },
+                '40%': { transform: 'scale(1.15)' },
+                '100%': { transform: 'scale(1)' },
+              },
+              // New Keyframes
+              shake: {
+                '10%, 90%': { transform: 'translate3d(-1px, 0, 0) rotate(-1deg)' },
+                '20%, 80%': { transform: 'translate3d(2px, 0, 0) rotate(2deg)' },
+                '30%, 50%, 70%': { transform: 'translate3d(-3px, 0, 0) rotate(-3deg)' },
+                '40%, 60%': { transform: 'translate3d(3px, 0, 0) rotate(3deg)' }
+              },
+              bounceOpen: {
+                '0%': { transform: 'scale(1)' },
+                '40%': { transform: 'scale(1.2)' }, // Overshoot
+                '60%': { transform: 'scale(0.95)' }, // Recoil
+                '80%': { transform: 'scale(1.02)' }, // Settle
+                '100%': { transform: 'scale(1)' }
+              },
+              shineSweep: {
+                '0%': { transform: 'translateX(-100%) skewX(-15deg)' },
+                '20%': { transform: 'translateX(200%) skewX(-15deg)' }, // Fast sweep
+                '100%': { transform: 'translateX(200%) skewX(-15deg)' } // Pause
+              }
+            },
+            backgroundImage: {
+              'metal-gradient': 'linear-gradient(180deg, #e2e8f0 0%, #94a3b8 20%, #475569 50%, #1e293b 100%)',
+              'gold-gradient': 'linear-gradient(180deg, #fff176 0%, #fdd835 40%, #f57f17 100%)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Global styles for realism */
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* SVG Noise Filter Class */
+      .bg-noise {
+        filter: url(#noise-filter);
+      }
+      
+      /* Text effects */
+      .text-glow {
+        text-shadow: 0 0 20px rgba(253, 216, 53, 0.5);
+      }
+      
+      .text-metallic {
+        background: linear-gradient(to bottom, #fff9c4 0%, #fbc02d 50%, #f57f17 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 0px rgba(133, 77, 14, 0.8));
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <!-- Hidden SVG Filter for Texture -->
+    <svg style="display: none;">
+      <filter id="noise-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.15" />
+        </feComponentTransfer>
+      </filter>
+    </svg>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
